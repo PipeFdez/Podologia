@@ -6,15 +6,15 @@ public class Podologia {
     private String fecha;
     private String hora;
     private String nombreCliente;
-    private String problema;
+    private String detalleProblema;
     private int precio;
 
-    public Podologia(String codigo, String fecha, String hora, String nombreCliente, String problema, int precio) {
+    public Podologia(String codigo, String fecha, String hora, String nombreCliente, String detalleProblema, int precio) {
         this.codigo = codigo;
         this.fecha = fecha;
         this.hora = hora;
         this.nombreCliente = nombreCliente;
-        this.problema = problema;
+        this.detalleProblema = detalleProblema;
         this.precio = precio;
     }
 
@@ -50,12 +50,12 @@ public class Podologia {
         this.nombreCliente = nombreCliente;
     }
 
-    public String getProblema() {
-        return problema;
+    public String getDetalleProblema() {
+        return detalleProblema;
     }
 
-    public void setProblema(String problema) {
-        this.problema = problema;
+    public void setDetalleProblema(String problema) {
+        this.detalleProblema = problema;
     }
 
     public int getPrecio() {
