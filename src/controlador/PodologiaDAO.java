@@ -1,10 +1,12 @@
 package controlador;
 
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Podologia;
 
 public class PodologiaDAO {
@@ -37,16 +39,19 @@ public class PodologiaDAO {
      boolean resultado = false;
 
     try {
-      Connection con = Conexion.getConexion();
-      String query="update registro set fecha=?, hora=? where Codigo=?";
-      PreparedStatement ps = con.prepareStatement(query);
+        Connection con = Conexion.getConexion();
+        String query="update registro set fecha=?, hora=?, nombreCliente=?, problema=?, precio=? where codigo=?";
+        PreparedStatement ps = con.prepareStatement(query);
       
-      ps.setString(1, podologia.getFecha());
-      ps.setString(2, podologia.getHora());
-      ps.setString(3, podologia.getCodigo());
-      
-      resultado = ps.executeUpdate()==1;
-      ps.close();
+        ps.setString(1, podologia.getFecha());
+        ps.setString(2, podologia.getHora());
+        ps.setString(3, podologia.getNombreCliente());
+        ps.setString(4, podologia.getDetalleProblema());
+        ps.setInt(5, podologia.getPrecio());
+        ps.setString(6, podologia.getCodigo());
+        
+        resultado = ps.executeUpdate() == 1;
+        ps.close();
       
     }catch (SQLException ex){
       Logger.getLogger(PodologiaDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,7 +112,7 @@ public class PodologiaDAO {
 
     try{
       Connection con = Conexion.getConexion();
-      String query="Select * from tbColores where codigo='"+codigo+"'";
+      String query="Select * from registro where codigo='"+codigo+"'";
       PreparedStatement ps = con.prepareStatement(query);
       
       ResultSet rs=ps.executeQuery();
