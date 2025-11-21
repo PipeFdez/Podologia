@@ -12,5 +12,7 @@ public class Proyecto_Podologia {
         ventanaMain.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); //No cerrar la ventana con la X
         
         ventanaMain.setVisible(true);
+        
+        //Wena wwena wena
     }   
 }
