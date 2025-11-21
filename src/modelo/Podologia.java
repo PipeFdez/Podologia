@@ -8,6 +8,8 @@ public class Podologia {
     private String nombreCliente;
     private String detalleProblema;
     private int precio;
+    
+    
 
     public Podologia(String codigo, String fecha, String hora, String nombreCliente, String detalleProblema, int precio) {
         this.codigo = codigo;
