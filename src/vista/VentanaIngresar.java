@@ -192,28 +192,46 @@ public class VentanaIngresar extends javax.swing.JFrame {
         hora = txt_hora.getText();
         nombreCliente = txt_nombreCliente.getText();
         detalleProblema = txt_detalle.getText();
-        precio = Integer.parseInt(txt_precio.getText());
         
-        podologia = new Podologia(codigo, fecha, hora, nombreCliente, detalleProblema, precio);
-        PodologiaDAO podDAO = new PodologiaDAO();
+        if (txt_codigo.getText().equals("") || txt_fecha.getText().equals("") ||
+            txt_hora.getText().equals("") || txt_nombreCliente.getText().equals("") ||
+            txt_detalle.getText().equals("") || txt_precio.getText().equals("")) {
         
-        if(podDAO.buscarHora(codigo)==null) {
-            podDAO.ingresarHora(podologia);
-            JOptionPane.showMessageDialog(this, "Hora ingresada");
-            
-            txt_codigo.setText(null);
-            txt_fecha.setText(null);
-            txt_hora.setText(null);
-            txt_nombreCliente.setText(null);
-            txt_detalle.setText(null);
-            txt_precio.setText(null);
-            txt_codigo.requestFocus();
-            
+            JOptionPane.showMessageDialog(this, "Debe completar todos los campos.");
+            return;
+        
         } else {
-            JOptionPane.showMessageDialog(this, "Código ya existe...ingrese otro", 
-                                          "¡¡ Advertencia !!", JOptionPane.WARNING_MESSAGE);
-            txt_codigo.setText(null);
-            txt_codigo.requestFocus();
+            
+            if(IsInteger(txt_precio.getText())){
+                precio = Integer.parseInt(txt_precio.getText());
+
+                podologia = new Podologia(codigo, fecha, hora, nombreCliente, detalleProblema, precio);
+                PodologiaDAO podDAO = new PodologiaDAO();
+
+                if(podDAO.buscarHora(codigo)==null) {
+                    podDAO.ingresarHora(podologia);
+                    JOptionPane.showMessageDialog(this, "Hora ingresada");
+
+                    txt_codigo.setText(null);
+                    txt_fecha.setText(null);
+                    txt_hora.setText(null);
+                    txt_nombreCliente.setText(null);
+                    txt_detalle.setText(null);
+                    txt_precio.setText(null);
+                    txt_codigo.requestFocus();
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Código ya existe...ingrese otro", 
+                                                  "¡¡ Advertencia !!", JOptionPane.WARNING_MESSAGE);
+                    txt_codigo.setText(null);
+                    txt_codigo.requestFocus();
+                }
+
+            }else{
+                txt_precio.setText(null);
+                JOptionPane.showMessageDialog(this, "La cantidad debe ser un número");
+                txt_precio.requestFocus();
+            }
         }
     }//GEN-LAST:event_btn_ingresarActionPerformed
 
