@@ -87,7 +87,11 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
 
     private void btn_cantdadHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cantdadHorasActionPerformed
         PodologiaDAO dao = new PodologiaDAO();
-        int cant = dao.cantidadDeHoras();  
+        String fechaInicio = "";
+        String fechaFin = "";
+        fechaInicio = JOptionPane.showInputDialog("Ingrese la fecha desde que quiere saber:  ");
+        fechaFin = JOptionPane.showInputDialog("Ingrese la segunda fecha hasta cuando quiere saber:  ");
+        int cant = dao.cantidadDeHorasEntreFechas(fechaInicio, fechaFin);
         JOptionPane.showMessageDialog(this, "Cantidad de horas registradas: " + cant);
     }//GEN-LAST:event_btn_cantdadHorasActionPerformed
 

@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Podologia;
 
+
 public class PodologiaDAO {
     
     public boolean ingresarHora(Podologia podologia) {
@@ -129,20 +130,34 @@ public class PodologiaDAO {
       return pod;
     }         
     
-    public int cantidadDeHoras() {
+    public int cantidadDeHorasEntreFechas(String fechaInicio, String fechaFin) {
         int cantidad = 0;
+
+        String sql = "SELECT COUNT(*) FROM registro WHERE fecha BETWEEN ? AND ?";
 
         try {
             Connection con = Conexion.getConexion();
-            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM registro");
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1, fechaInicio);
+            ps.setString(2, fechaFin);
+
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 cantidad = rs.getInt(1);
             }
-        }catch (Exception e) {
-            e.printStackTrace();
+
+            rs.close();
+            ps.close();
+            con.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PodologiaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PodologiaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return cantidad;
     }
 }
