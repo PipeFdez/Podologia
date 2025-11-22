@@ -1,5 +1,7 @@
 package vista;
 
+import javax.swing.JOptionPane;
+
 public class VentanaPrincipal extends javax.swing.JFrame {
     
     public VentanaPrincipal() {
@@ -99,7 +101,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_MostrarActionPerformed
 
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
-        dispose();
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro?");
+        
+        if (opcion == 0){
+            dispose();
+        }
     }//GEN-LAST:event_btn_SalirActionPerformed
 
     private void btn_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarActionPerformed
