@@ -9,6 +9,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
 
     public VentanaIngresar() {
         initComponents();
+        txt_codigo.requestFocus();
     }
     
     public static boolean IsInteger(String text){
@@ -40,6 +41,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
         txt_detalle = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txt_codigo = new javax.swing.JTextField();
+        btn_limpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +98,14 @@ public class VentanaIngresar extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Código");
 
+        btn_limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/erase.png"))); // NOI18N
+        btn_limpiar.setBorderPainted(false);
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,11 +140,12 @@ public class VentanaIngresar extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txt_fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                                     .addComponent(txt_hora, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                                    .addComponent(txt_codigo)))))
+                                    .addComponent(txt_codigo)))
+                            .addComponent(btn_limpiar, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
+                        .addGap(105, 105, 105)
                         .addComponent(jLabel1)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +154,9 @@ public class VentanaIngresar extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addGap(16, 16, 16)
+                        .addComponent(btn_limpiar)
+                        .addGap(18, 18, 18)
                         .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -152,7 +165,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)))
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -171,7 +184,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46))
         );
 
@@ -212,13 +225,13 @@ public class VentanaIngresar extends javax.swing.JFrame {
                     podDAO.ingresarHora(podologia);
                     JOptionPane.showMessageDialog(this, "Hora ingresada");
 
-                    txt_codigo.setText(null);
-                    txt_fecha.setText(null);
-                    txt_hora.setText(null);
-                    txt_nombreCliente.setText(null);
-                    txt_detalle.setText(null);
-                    txt_precio.setText(null);
-                    txt_codigo.requestFocus();
+                    //txt_codigo.setText(null);
+                    //txt_fecha.setText(null);
+                    //txt_hora.setText(null);
+                    //txt_nombreCliente.setText(null);
+                    //txt_detalle.setText(null);
+                    //txt_precio.setText(null);
+                    //txt_codigo.requestFocus();
 
                 } else {
                     JOptionPane.showMessageDialog(this, "Código ya existe...ingrese otro", 
@@ -247,12 +260,25 @@ public class VentanaIngresar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_fechaActionPerformed
 
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+        
+    txt_codigo.setText(null);
+    txt_fecha.setText(null);
+    txt_hora.setText(null);
+    txt_nombreCliente.setText(null);
+    txt_detalle.setText(null);
+    txt_precio.setText(null);
+    txt_codigo.requestFocus();
+        
+    }//GEN-LAST:event_btn_limpiarActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_ingresar;
+    private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
