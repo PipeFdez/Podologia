@@ -49,7 +49,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
         jLabel1.setText("Ingresar Datos");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Fecha (DD-MM)");
+        jLabel2.setText("Fecha (DD-MM-AAAA)");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Hora (HH:MM)");
@@ -141,7 +141,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jLabel1)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
