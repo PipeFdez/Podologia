@@ -16,7 +16,7 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         btn_cantdadHoras = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_precio = new javax.swing.JButton();
         btn_volver = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
@@ -34,7 +34,12 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Promedio de Precios");
+        btn_precio.setText("Cantidad  de Citas Con Precio Mayor a");
+        btn_precio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_precioActionPerformed(evt);
+            }
+        });
 
         btn_volver.setText("Volver");
         btn_volver.addActionListener(new java.awt.event.ActionListener() {
@@ -60,9 +65,9 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(btn_cantdadHoras)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(40, 40, 40))
+                .addGap(18, 18, 18)
+                .addComponent(btn_precio)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,7 +77,7 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cantdadHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(85, 85, 85)
                 .addComponent(btn_volver)
                 .addContainerGap())
@@ -95,11 +100,20 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Cantidad de horas registradas: " + cant);
     }//GEN-LAST:event_btn_cantdadHorasActionPerformed
 
+    private void btn_precioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_precioActionPerformed
+        PodologiaDAO dao = new PodologiaDAO();
+        String monto= "";
+        monto = JOptionPane.showInputDialog("Ingrese monto:  ");
+        int monto2 = Integer.parseInt(monto);
+        int cant = dao.cantidadCitasPrecioMayor(monto2);
+        JOptionPane.showMessageDialog(this, "Cantidad de citas mayor a $" + monto2 + " :  " + cant);
+    }//GEN-LAST:event_btn_precioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cantdadHoras;
+    private javax.swing.JButton btn_precio;
     private javax.swing.JButton btn_volver;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables

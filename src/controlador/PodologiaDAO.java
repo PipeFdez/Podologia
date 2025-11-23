@@ -133,7 +133,7 @@ public class PodologiaDAO {
     public int cantidadDeHorasEntreFechas(String fechaInicio, String fechaFin) {
         int cantidad = 0;
 
-        String sql = "SELECT COUNT(*) FROM registro WHERE fecha BETWEEN ? AND ?";
+        String sql = "SELECT COUNT(*) FROM `registro` WHERE  STR_TO_DATE(fecha, '%d-%m-%Y') BETWEEN STR_TO_DATE( ? , '%d-%m-%Y') AND STR_TO_DATE( ? , '%d-%m-%Y');";
 
         try {
             Connection con = Conexion.getConexion();
@@ -150,7 +150,6 @@ public class PodologiaDAO {
 
             rs.close();
             ps.close();
-            con.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(PodologiaDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -159,6 +158,38 @@ public class PodologiaDAO {
         }
 
         return cantidad;
+    }
+    
+    public int cantidadCitasPrecioMayor(int monto){
+        int cant = 0;
+        
+        String sql = "SELECT COUNT(*) FROM `registro` WHERE  precio > ?";
+
+        try {
+            Connection con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, monto);
+
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                cant = rs.getInt(1);
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PodologiaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PodologiaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cant;
+        
+        
     }
 }
 
