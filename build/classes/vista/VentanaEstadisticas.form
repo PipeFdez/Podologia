@@ -49,7 +49,7 @@
               <Component id="btn_cantdadHoras" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_precio" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,7 +82,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_cantdadHoras">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cantidad de Horas"/>
+        <Property name="text" type="java.lang.String" value="Cantidad de horas"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cantdadHorasActionPerformed"/>
@@ -90,7 +90,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_precio">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cantidad  de Citas Con Precio Mayor a"/>
+        <Property name="text" type="java.lang.String" value="Cantidad de citas con precio mayor a"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_precioActionPerformed"/>

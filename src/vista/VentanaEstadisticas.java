@@ -27,14 +27,14 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
         jLabel1.setText("Estadisticas");
         jLabel1.setToolTipText("");
 
-        btn_cantdadHoras.setText("Cantidad de Horas");
+        btn_cantdadHoras.setText("Cantidad de horas");
         btn_cantdadHoras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cantdadHorasActionPerformed(evt);
             }
         });
 
-        btn_precio.setText("Cantidad  de Citas Con Precio Mayor a");
+        btn_precio.setText("Cantidad de citas con precio mayor a");
         btn_precio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_precioActionPerformed(evt);
@@ -67,7 +67,7 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
                 .addComponent(btn_cantdadHoras)
                 .addGap(18, 18, 18)
                 .addComponent(btn_precio)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
