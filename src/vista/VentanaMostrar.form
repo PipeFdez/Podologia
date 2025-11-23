@@ -38,9 +38,9 @@
                           <Component id="btn_buscar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="btn_editar" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="btn_editar" min="-2" pref="160" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btn_eliminar" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="btn_eliminar" min="-2" pref="160" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" alignment="1" min="-2" pref="521" max="-2" attributes="0"/>
                   </Group>
@@ -147,7 +147,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/edit.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Editar hora"/>
+        <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_editarActionPerformed"/>
@@ -166,7 +166,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/remove.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Eliminar Hora"/>
+        <Property name="text" type="java.lang.String" value=" Eliminar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_eliminarActionPerformed"/>

@@ -86,7 +86,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
         }
 
         btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
-        btn_editar.setText("Editar hora");
+        btn_editar.setText("Editar");
         btn_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editarActionPerformed(evt);
@@ -101,7 +101,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
         });
 
         btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/remove.png"))); // NOI18N
-        btn_eliminar.setText("Eliminar Hora");
+        btn_eliminar.setText(" Eliminar");
         btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_eliminarActionPerformed(evt);
@@ -143,9 +143,9 @@ public class VentanaMostrar extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btn_buscar))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -236,12 +236,12 @@ public class VentanaMostrar extends javax.swing.JFrame {
                 DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
                 String [][] datos = new String[registros.size()][6];
                 for (int i = 0; i < registros.size(); i++) {
-                    datos[i][0]=registros.get(i).getCodigo();
-                    datos[i][1]=registros.get(i).getFecha();
-                    datos[i][2]=registros.get(i).getHora();
-                    datos[i][3]=registros.get(i).getNombreCliente();
-                    datos[i][4]=registros.get(i).getDetalleProblema();
-                    datos[i][5]=String.valueOf(registros.get(i).getPrecio());
+                    datos[i][0] = registros.get(i).getCodigo();
+                    datos[i][1] = registros.get(i).getFecha();
+                    datos[i][2] = registros.get(i).getHora();
+                    datos[i][3] = registros.get(i).getNombreCliente();
+                    datos[i][4] = registros.get(i).getDetalleProblema();
+                    datos[i][5] = String.valueOf(registros.get(i).getPrecio());
 
                     dtm.addRow(datos[i]);
                 }
@@ -251,12 +251,12 @@ public class VentanaMostrar extends javax.swing.JFrame {
         else {
             DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
             String [] datos = new String[6];
-            datos[0]=a.getCodigo();
-            datos[1]=a.getFecha();
-            datos[2]=a.getHora();
-            datos[3]=a.getNombreCliente();
-            datos[4]=a.getDetalleProblema();
-            datos[5]=String.valueOf(a.getPrecio());
+            datos[0] = a.getCodigo();
+            datos[1] = a.getFecha();
+            datos[2] = a.getHora();
+            datos[3] = a.getNombreCliente();
+            datos[4] = a.getDetalleProblema();
+            datos[5] = String.valueOf(a.getPrecio());
             
             dtm.addRow(datos);
             jt_ver.setModel(dtm);    
