@@ -285,7 +285,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
 
     private void btn_estadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estadisticasActionPerformed
         VentanaEstadisticas ventanaEstadisticas = new VentanaEstadisticas();
-        ventanaEstadisticas.setTitle("Ingresar");
+        ventanaEstadisticas.setTitle("Estadisticas");
         ventanaEstadisticas.setLocationRelativeTo(null);
         ventanaEstadisticas.setResizable(false); //modificar tamaño de la ventana
         ventanaEstadisticas.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); //No cerrar la ventana con la X
