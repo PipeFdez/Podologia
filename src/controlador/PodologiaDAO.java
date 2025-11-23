@@ -128,5 +128,62 @@ public class PodologiaDAO {
     }
     return pod;
   }         
-}
+    public int cantidadDeHorasEntreFechas(String fechaInicio, String fechaFin) {
+        int cantidad = 0;
 
+        String sql = "SELECT COUNT(*) FROM `registro` WHERE  STR_TO_DATE(fecha, '%d-%m-%Y') BETWEEN STR_TO_DATE( ? , '%d-%m-%Y') AND STR_TO_DATE( ? , '%d-%m-%Y');";
+
+        try {
+            Connection con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1, fechaInicio);
+            ps.setString(2, fechaFin);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                cantidad = rs.getInt(1);
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PodologiaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PodologiaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cantidad;
+    }
+    
+    public int cantidadCitasPrecioMayor(int monto){
+        int cant = 0;
+        
+        String sql = "SELECT COUNT(*) FROM `registro` WHERE  precio > ?";
+
+        try {
+            Connection con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, monto);
+
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                cant = rs.getInt(1);
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PodologiaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PodologiaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cant;       
+    }
+}

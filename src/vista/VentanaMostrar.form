@@ -26,7 +26,11 @@
           <Group type="102" attributes="0">
               <EmptySpace pref="35" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btn_volver" alignment="1" min="-2" pref="106" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btn_estadisticas" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
+                      <Component id="btn_volver" min="-2" pref="106" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -38,9 +42,9 @@
                           <Component id="btn_buscar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="btn_editar" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="btn_editar" min="-2" pref="170" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btn_eliminar" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="btn_eliminar" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" alignment="1" min="-2" pref="521" max="-2" attributes="0"/>
                   </Group>
@@ -66,9 +70,18 @@
                   <Component id="btn_eliminar" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="btn_editar" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
-              <Component id="btn_volver" min="-2" pref="42" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="43" max="32767" attributes="0"/>
+                      <Component id="btn_volver" min="-2" pref="42" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btn_estadisticas" min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,7 +106,7 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="6" rowCount="4">
-                <Column editable="true" title="C&#xf3;digo" type="java.lang.String"/>
+                <Column editable="false" title="C&#xf3;digo" type="java.lang.String"/>
                 <Column editable="true" title="Fecha" type="java.lang.String"/>
                 <Column editable="true" title="Hora" type="java.lang.String"/>
                 <Column editable="true" title="Cliente" type="java.lang.Object"/>
@@ -147,7 +160,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/edit.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Editar"/>
+        <Property name="text" type="java.lang.String" value="Editar hora"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_editarActionPerformed"/>
@@ -166,7 +179,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/remove.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value=" Eliminar"/>
+        <Property name="text" type="java.lang.String" value="Eliminar Hora"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_eliminarActionPerformed"/>
@@ -195,6 +208,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_estadisticas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Estadisticas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_estadisticasActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

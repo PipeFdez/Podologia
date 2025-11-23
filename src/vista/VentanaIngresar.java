@@ -220,15 +220,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
                 if(podDAO.buscarHora(codigo)==null) {
                     podDAO.ingresarHora(podologia);
                     JOptionPane.showMessageDialog(this, "Hora ingresada");
-
-                    //txt_codigo.setText(null);
-                    //txt_fecha.setText(null);
-                    //txt_hora.setText(null);
-                    //txt_nombreCliente.setText(null);
-                    //txt_detalle.setText(null);
-                    //txt_precio.setText(null);
-                    //txt_codigo.requestFocus();
-
+                    
                 } else {
                     JOptionPane.showMessageDialog(this, "Código ya existe...ingrese otro", 
                                                   "¡¡ Advertencia !!", JOptionPane.WARNING_MESSAGE);
@@ -238,7 +230,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
 
             }else{
                 txt_precio.setText(null);
-                JOptionPane.showMessageDialog(this, "La cantidad debe ser un número");
+                JOptionPane.showMessageDialog(this, "El precio debe ser un número");
                 txt_precio.requestFocus();
             }
         }
