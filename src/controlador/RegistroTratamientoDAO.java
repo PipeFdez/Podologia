@@ -100,4 +100,28 @@ public class RegistroTratamientoDAO {
     }
     return registroTrata;
   }          
+
+    //Metodos negocio
+    public ArrayList<String> obtenerTratamientosPorRegistro(String codigo) {
+      ArrayList <String> idTratamiento = new ArrayList<>();
+
+      String query = "SELECT idTratamiento FROM registro_tratamiento WHERE codigo='"+codigo+"'";
+      try {
+          Connection con = Conexion.getConexion();
+          PreparedStatement ps = con.prepareStatement(query);
+          ResultSet rs = ps.executeQuery();
+
+          while (rs.next()) {
+              idTratamiento.add(rs.getString(1)); 
+          }
+
+          rs.close();
+          ps.close();
+
+      } catch (SQLException | ClassNotFoundException ex) {
+          Logger.getLogger(RegistroTratamientoDAO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return idTratamiento;
+    
+    }
 }

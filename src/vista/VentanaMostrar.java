@@ -1,5 +1,6 @@
 package vista;
 import controlador.RegistroDAO;
+import controlador.RegistroTratamientoDAO;
 import controlador.TratamientoDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ public class VentanaMostrar extends javax.swing.JFrame {
         modelo.addColumn("Hora");   
         modelo.addColumn("Cliente");
         modelo.addColumn("ID Tratamiento");
+        modelo.addColumn("Precio");
+
         
         this.jt_ver.setModel(modelo);
     }
@@ -184,7 +187,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
         DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
         int fila=jt_ver.getSelectedRow();
         
-        String codigo, fecha, hora, nombreCliente;
+        String codigo, fecha, hora, nombreCliente, listaID;
         
         if(fila == -1)
             JOptionPane.showMessageDialog(this, "Debe seleccionar una cita");
@@ -194,13 +197,17 @@ public class VentanaMostrar extends javax.swing.JFrame {
             fecha = String.valueOf(jt_ver.getValueAt(fila, 1));
             hora = String.valueOf(jt_ver.getValueAt(fila, 2));
             nombreCliente = String.valueOf(jt_ver.getValueAt(fila, 3));
-            detalleProblema = String.valueOf(jt_ver.getValueAt(fila, 4));
-            precio = Integer.parseInt(String.valueOf(jt_ver.getValueAt(fila, 5)));
+            listaID = String.valueOf(jt_ver.getValueAt(fila, 4));
             
-            Registro podologia = new Registro(codigo, fecha, hora, nombreCliente, detalleProblema, precio);
-            RegistroDAO podDAO = new RegistroDAO();
+            Registro registro = new Registro(codigo, fecha, hora, nombreCliente);
+            RegistroDAO regisDAO = new RegistroDAO();
+            RegistroTratamientoDAO registroTrataDAO = new RegistroTratamientoDAO();
             
-            podDAO.modificarHora(podologia);
+            //Tengo que transformar la lista en un arraylist, y luego separar el contendio en cada ""
+            registroTrataDAO.eliminarRegistroTratamiento(codigo);
+            registroTrataDAO.ingresarRegistroTratamiento(codigo, listaID);
+            
+            regisDAO.modificarRegistro(registro);
             JOptionPane.showMessageDialog(this, "Cita Modificado");
             
             limpiarTabla();
@@ -229,26 +236,34 @@ public class VentanaMostrar extends javax.swing.JFrame {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         limpiarTabla();
+        int precioTotal = 0;
         
         RegistroDAO resgistroDAO = new RegistroDAO();
         TratamientoDAO tratamientoDAO = new TratamientoDAO();
         Registro a = resgistroDAO.buscarRegistro(txt_buscar.getText());
+        RegistroTratamientoDAO registroTrataDAO = new RegistroTratamientoDAO();
         
         if(a==null) {
             ArrayList <Registro> registros = resgistroDAO.obtenerTodos();
-            ArrayList <Tratamiento> trata = tratamientoDAO.obtenerTodos();
             
             if(registros.size() == 0)
                 JOptionPane.showMessageDialog(this,"No hay citas para mostrar");
             else {
                 DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
                 
-                String [][] datos = new String[registros.size()][4];
+                String [][] datos = new String[registros.size()][6];
+               
                 for (int i = 0; i < registros.size(); i++) {
-                    datos[i][0]=registros.get(i).getCodigo();
-                    datos[i][0]=registros.get(i).getFecha();
-                    datos[i][1]=registros.get(i).getHora();
-                    datos[i][2]=registros.get(i).getNombreCliente();
+                    
+                    precioTotal = resgistroDAO.calcularPrecioTotal(registros.get(i).getCodigo());
+                    ArrayList<String> idTratamiento = registroTrataDAO.obtenerTratamientosPorRegistro(registros.get(i).getCodigo());
+                    
+                    datos[i][0] = registros.get(i).getCodigo();
+                    datos[i][1] = registros.get(i).getFecha();
+                    datos[i][2] = registros.get(i).getHora();
+                    datos[i][3] = registros.get(i).getNombreCliente();
+                    datos[i][4] = String.valueOf(idTratamiento);;
+                    datos[i][5] = String.valueOf(precioTotal);
                     
                     dtm.addRow(datos[i]);
                 }
@@ -257,11 +272,16 @@ public class VentanaMostrar extends javax.swing.JFrame {
         }
         else {
             DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
-            String [] datos = new String[4];
+            String [] datos = new String[6];
+            precioTotal = resgistroDAO.calcularPrecioTotal(a.getCodigo());
+            ArrayList<String> idTratamiento = registroTrataDAO.obtenerTratamientosPorRegistro(a.getCodigo());
+            
             datos[0]=a.getCodigo();
-            datos[0]=a.getFecha();
-            datos[1]=a.getHora();
-            datos[2]=a.getNombreCliente();
+            datos[1]=a.getFecha();
+            datos[2]=a.getHora();
+            datos[3]=a.getNombreCliente();
+            datos[4] = String.valueOf(idTratamiento);
+            datos[5] = String.valueOf(precioTotal);
             
             dtm.addRow(datos);
             jt_ver.setModel(dtm);    

@@ -78,8 +78,8 @@ public class RegistroDAO {
     return resultado;
   }
   
-  public ArrayList <Registro> obtenerTodos() {
-    ArrayList <Registro> pod=new ArrayList<>();
+  public ArrayList<Registro> obtenerTodos() {
+    ArrayList <Registro> registro = new ArrayList<>();
     
     try{
       Connection con = Conexion.getConexion();
@@ -87,11 +87,11 @@ public class RegistroDAO {
       PreparedStatement ps = con.prepareStatement(query);
       
       ResultSet rs=ps.executeQuery();
-      Registro po;
+      Registro regis;
       
       while (rs.next()) {
-        po=new Registro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
-        pod.add(po);
+        regis = new Registro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+        registro.add(regis);
       }
       ps.close();      
     }catch (SQLException ex){
@@ -100,7 +100,7 @@ public class RegistroDAO {
     }catch (ClassNotFoundException ex){
       Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
     }
-    return pod;
+    return registro;
   }
   
   public Registro buscarRegistro(String codigo) {
@@ -129,11 +129,11 @@ public class RegistroDAO {
     public int cantidadDeHorasEntreFechas(String fechaInicio, String fechaFin) {
         int cantidad = 0;
 
-        String sql = "SELECT COUNT(*) FROM `registro` WHERE  STR_TO_DATE(fecha, '%d-%m-%Y') BETWEEN STR_TO_DATE( ? , '%d-%m-%Y') AND STR_TO_DATE( ? , '%d-%m-%Y');";
+        String query = "SELECT COUNT(*) FROM `registro` WHERE  STR_TO_DATE(fecha, '%d-%m-%Y') BETWEEN STR_TO_DATE( ? , '%d-%m-%Y') AND STR_TO_DATE( ? , '%d-%m-%Y');";
 
         try {
             Connection con = Conexion.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(query);
 
             ps.setString(1, fechaInicio);
             ps.setString(2, fechaFin);
@@ -158,11 +158,11 @@ public class RegistroDAO {
     public int cantidadCitasPrecioMayor(int monto){
         int cant = 0;
         
-        String sql = "SELECT COUNT(*) FROM `registro` WHERE  precio > ?";
+        String query = "SELECT COUNT(*) FROM `registro` WHERE  precio > ?";
 
         try {
             Connection con = Conexion.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, monto);
             ResultSet rs = ps.executeQuery();
@@ -180,5 +180,31 @@ public class RegistroDAO {
             Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cant;       
+    }
+    
+    //Fuente https://www.w3schools.com/sql/sql_join.asp
+    public int calcularPrecioTotal(String codigo) {
+        int precioTotal = 0;
+
+        String query = "SELECT SUM(tratamiento.precio) " + 
+                 "FROM registro_tratamiento " +
+                 "INNER JOIN tratamiento ON registro_tratamiento.idTratamiento = tratamiento.idTratamiento " +
+                 "WHERE registro_tratamiento.codigo='"+codigo+"'";
+        try {
+                Connection con = Conexion.getConexion();
+                PreparedStatement ps = con.prepareStatement(query);
+                ResultSet rs = ps.executeQuery();
+
+                if (rs.next()) {        
+                    precioTotal = rs.getInt(1); 
+                }
+            
+            rs.close();
+            ps.close();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return precioTotal;
     }
 }
