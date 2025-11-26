@@ -1,6 +1,6 @@
 package vista;
 
-import controlador.PodologiaDAO;
+import controlador.RegistroDAO;
 import javax.swing.JOptionPane;
 
 public class VentanaEstadisticas extends javax.swing.JFrame {
@@ -91,7 +91,7 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_volverActionPerformed
 
     private void btn_cantdadHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cantdadHorasActionPerformed
-        PodologiaDAO dao = new PodologiaDAO();
+        RegistroDAO dao = new RegistroDAO();
         String fechaInicio = "";
         String fechaFin = "";
         fechaInicio = JOptionPane.showInputDialog("Fecha inicio (DD-MM-AAAA):  ");
@@ -101,7 +101,7 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cantdadHorasActionPerformed
 
     private void btn_precioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_precioActionPerformed
-        PodologiaDAO dao = new PodologiaDAO();
+        RegistroDAO dao = new RegistroDAO();
         String monto= "";
         monto = JOptionPane.showInputDialog("Ingrese monto:  ");
         int montoInt = Integer.parseInt(monto);

@@ -1,9 +1,11 @@
 package vista;
-import controlador.PodologiaDAO;
+import controlador.RegistroDAO;
+import controlador.TratamientoDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Podologia;
+import modelo.Registro;
+import modelo.Tratamiento;
 
 public class VentanaMostrar extends javax.swing.JFrame {
     
@@ -12,12 +14,11 @@ public class VentanaMostrar extends javax.swing.JFrame {
     public VentanaMostrar() {
         initComponents();
         
-        modelo.addColumn("Código"); 
+        modelo.addColumn("Codigo");
         modelo.addColumn("Fecha");
         modelo.addColumn("Hora");   
         modelo.addColumn("Cliente");
-        modelo.addColumn("Detalle");
-        modelo.addColumn("Precio");
+        modelo.addColumn("ID Tratamiento");
         
         this.jt_ver.setModel(modelo);
     }
@@ -52,28 +53,21 @@ public class VentanaMostrar extends javax.swing.JFrame {
 
         jt_ver.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Código", "Fecha", "Hora", "Cliente", "Detalle", "Precio"
+                "Fecha", "Hora", "Cliente", "Precio"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jt_ver);
@@ -82,8 +76,6 @@ public class VentanaMostrar extends javax.swing.JFrame {
             jt_ver.getColumnModel().getColumn(1).setResizable(false);
             jt_ver.getColumnModel().getColumn(2).setResizable(false);
             jt_ver.getColumnModel().getColumn(3).setResizable(false);
-            jt_ver.getColumnModel().getColumn(4).setResizable(false);
-            jt_ver.getColumnModel().getColumn(5).setResizable(false);
         }
 
         btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
@@ -189,14 +181,12 @@ public class VentanaMostrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
-
         DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
         int fila=jt_ver.getSelectedRow();
         
-        String codigo, fecha, hora, nombreCliente, detalleProblema;
-        int precio;
+        String codigo, fecha, hora, nombreCliente;
         
-        if(fila==-1)
+        if(fila == -1)
             JOptionPane.showMessageDialog(this, "Debe seleccionar una cita");
         else
         {
@@ -207,8 +197,8 @@ public class VentanaMostrar extends javax.swing.JFrame {
             detalleProblema = String.valueOf(jt_ver.getValueAt(fila, 4));
             precio = Integer.parseInt(String.valueOf(jt_ver.getValueAt(fila, 5)));
             
-            Podologia podologia = new Podologia(codigo, fecha, hora, nombreCliente, detalleProblema, precio);
-            PodologiaDAO podDAO = new PodologiaDAO();
+            Registro podologia = new Registro(codigo, fecha, hora, nombreCliente, detalleProblema, precio);
+            RegistroDAO podDAO = new RegistroDAO();
             
             podDAO.modificarHora(podologia);
             JOptionPane.showMessageDialog(this, "Cita Modificado");
@@ -229,8 +219,8 @@ public class VentanaMostrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una cita");
         else {
             String codigo = String.valueOf(jt_ver.getValueAt(fila, 0));
-            PodologiaDAO podDAO = new PodologiaDAO();
-            podDAO.eliminarHora(codigo);
+            RegistroDAO registroDAO = new RegistroDAO();
+            registroDAO.eliminarRegistro(codigo);
             
             JOptionPane.showMessageDialog(this, "Cita Eliminada");
             dtm.removeRow(fila);
@@ -240,25 +230,26 @@ public class VentanaMostrar extends javax.swing.JFrame {
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         limpiarTabla();
         
-        PodologiaDAO podDAO = new PodologiaDAO();
-        Podologia a = podDAO.buscarHora(txt_buscar.getText());
+        RegistroDAO resgistroDAO = new RegistroDAO();
+        TratamientoDAO tratamientoDAO = new TratamientoDAO();
+        Registro a = resgistroDAO.buscarRegistro(txt_buscar.getText());
         
         if(a==null) {
-            ArrayList <Podologia> registros = podDAO.obtenerTodos();
+            ArrayList <Registro> registros = resgistroDAO.obtenerTodos();
+            ArrayList <Tratamiento> trata = tratamientoDAO.obtenerTodos();
             
             if(registros.size() == 0)
                 JOptionPane.showMessageDialog(this,"No hay citas para mostrar");
             else {
                 DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
-                String [][] datos = new String[registros.size()][6];
+                
+                String [][] datos = new String[registros.size()][4];
                 for (int i = 0; i < registros.size(); i++) {
                     datos[i][0]=registros.get(i).getCodigo();
-                    datos[i][1]=registros.get(i).getFecha();
-                    datos[i][2]=registros.get(i).getHora();
-                    datos[i][3]=registros.get(i).getNombreCliente();
-                    datos[i][4]=registros.get(i).getDetalleProblema();
-                    datos[i][5]=String.valueOf(registros.get(i).getPrecio());
-
+                    datos[i][0]=registros.get(i).getFecha();
+                    datos[i][1]=registros.get(i).getHora();
+                    datos[i][2]=registros.get(i).getNombreCliente();
+                    
                     dtm.addRow(datos[i]);
                 }
                 jt_ver.setModel(dtm);
@@ -266,13 +257,11 @@ public class VentanaMostrar extends javax.swing.JFrame {
         }
         else {
             DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
-            String [] datos = new String[6];
+            String [] datos = new String[4];
             datos[0]=a.getCodigo();
-            datos[1]=a.getFecha();
-            datos[2]=a.getHora();
-            datos[3]=a.getNombreCliente();
-            datos[4]=a.getDetalleProblema();
-            datos[5]=String.valueOf(a.getPrecio());
+            datos[0]=a.getFecha();
+            datos[1]=a.getHora();
+            datos[2]=a.getNombreCliente();
             
             dtm.addRow(datos);
             jt_ver.setModel(dtm);    
