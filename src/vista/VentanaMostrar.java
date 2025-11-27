@@ -17,7 +17,8 @@ public class VentanaMostrar extends javax.swing.JFrame {
         modelo.addColumn("Codigo");
         modelo.addColumn("Fecha");
         modelo.addColumn("Hora");   
-        modelo.addColumn("Cliente");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Tratamiento");
         modelo.addColumn("Precio");
         
@@ -55,20 +56,20 @@ public class VentanaMostrar extends javax.swing.JFrame {
 
         jt_ver.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Fecha", "Hora", "Cliente", "Tratamiento", "Precio"
+                "Codigo", "Fecha", "Hora", "Nombre", "Apellido", "Tratamiento", "Precio"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true
+                false, true, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -87,6 +88,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
             jt_ver.getColumnModel().getColumn(3).setResizable(false);
             jt_ver.getColumnModel().getColumn(4).setResizable(false);
             jt_ver.getColumnModel().getColumn(5).setResizable(false);
+            jt_ver.getColumnModel().getColumn(6).setResizable(false);
         }
 
         btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
@@ -144,28 +146,31 @@ public class VentanaMostrar extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btn_buscar))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btn_editar, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                                .addComponent(btn_estadisticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btn_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                                .addComponent(btn_volver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(202, 202, 202)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_buscar))
+                            .addComponent(btn_volver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(btn_estadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                        .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -178,18 +183,17 @@ public class VentanaMostrar extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btn_estadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_estadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_volver, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_volver, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -199,7 +203,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
         DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
         int fila=jt_ver.getSelectedRow();
         
-        String codigo, fecha, hora, nombreCliente;
+        String codigo, fecha, hora, nombre, apellido;
         
         if(fila == -1)
             JOptionPane.showMessageDialog(this, "Debe seleccionar una cita");
@@ -208,9 +212,10 @@ public class VentanaMostrar extends javax.swing.JFrame {
             codigo = String.valueOf(jt_ver.getValueAt(fila, 0));
             fecha = String.valueOf(jt_ver.getValueAt(fila, 1));
             hora = String.valueOf(jt_ver.getValueAt(fila, 2));
-            nombreCliente = String.valueOf(jt_ver.getValueAt(fila, 3));
+            nombre = String.valueOf(jt_ver.getValueAt(fila, 3));
+            apellido = String.valueOf(jt_ver.getValueAt(fila, 4));
             
-            Registro registro = new Registro(codigo, fecha, hora, nombreCliente);
+            Registro registro = new Registro(codigo, fecha, hora, nombre, apellido);
             RegistroDAO regisDAO = new RegistroDAO();
             
             regisDAO.modificarRegistro(registro);
@@ -257,7 +262,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
             else {
                 DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
                 
-                String [][] datos = new String[registros.size()][6];
+                String [][] datos = new String[registros.size()][7];
                
                 for (int i = 0; i < registros.size(); i++) {
                     
@@ -267,9 +272,10 @@ public class VentanaMostrar extends javax.swing.JFrame {
                     datos[i][0] = registros.get(i).getCodigo();
                     datos[i][1] = registros.get(i).getFecha();
                     datos[i][2] = registros.get(i).getHora();
-                    datos[i][3] = registros.get(i).getNombreCliente();
-                    datos[i][4] = String.valueOf(idTratamiento);;
-                    datos[i][5] = String.valueOf(precioTotal);
+                    datos[i][3] = registros.get(i).getNombre();
+                    datos[i][4] = registros.get(i).getApellido();
+                    datos[i][5] = String.valueOf(idTratamiento);;
+                    datos[i][6] = String.valueOf(precioTotal);
                     
                     dtm.addRow(datos[i]);
                 }
@@ -278,16 +284,17 @@ public class VentanaMostrar extends javax.swing.JFrame {
         }
         else {
             DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
-            String [] datos = new String[6];
+            String [] datos = new String[7];
             precioTotal = resgistroDAO.calcularPrecioTotal(a.getCodigo());
             ArrayList<String> idTratamiento = registroTrataDAO.obtenerTratamientosPorRegistro(a.getCodigo());
             
             datos[0] = a.getCodigo();
             datos[1] = a.getFecha();
             datos[2] = a.getHora();
-            datos[3] = a.getNombreCliente();
-            datos[4] = String.valueOf(idTratamiento);
-            datos[5] = String.valueOf(precioTotal);
+            datos[3] = a.getNombre();
+            datos[4] = a.getApellido();
+            datos[5] = String.valueOf(idTratamiento);
+            datos[6] = String.valueOf(precioTotal);
             
             dtm.addRow(datos);
             jt_ver.setModel(dtm);    

@@ -4,13 +4,15 @@ public class Registro {
     private String codigo;
     private String fecha;
     private String hora;
-    private String nombreCliente;
+    private String nombre;
+    private String apellido;
 
-    public Registro(String codigo, String fecha, String hora, String nombreCliente) {
+    public Registro(String codigo, String fecha, String hora, String nombre, String apellido) {
         this.codigo = codigo;
         this.fecha = fecha;
         this.hora = hora;
-        this.nombreCliente = nombreCliente;
+        this.nombre = nombre;
+        this.apellido = apellido;
     }
 
     public Registro() {
@@ -40,11 +42,22 @@ public class Registro {
         this.hora = hora;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    
+    
 }

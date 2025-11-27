@@ -17,13 +17,14 @@ public class RegistroDAO {
     
         try {
             Connection con = Conexion.getConexion();
-            String query="insert into registro(codigo, fecha, hora, nombreCliente) values(?,?,?,?)";
+            String query="insert into registro(codigo, fecha, hora, nombre, apellido) values(?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setString(1, registro.getCodigo());
             ps.setString(2, registro.getFecha());
             ps.setString(3, registro.getHora());
-            ps.setString(4, registro.getNombreCliente());
+            ps.setString(4, registro.getNombre());
+            ps.setString(5, registro.getApellido());
             
             resultado = ps.executeUpdate()==1;
             ps.close();     
@@ -39,13 +40,14 @@ public class RegistroDAO {
 
     try {
         Connection con = Conexion.getConexion();
-        String query="update registro set fecha=?, hora=?, nombreCliente=? where codigo=?";
+        String query="update registro set fecha=?, hora=?, nombre=?, apellido=? where codigo=?";
         PreparedStatement ps = con.prepareStatement(query);
       
         ps.setString(1, registro.getFecha());
         ps.setString(2, registro.getHora());
-        ps.setString(3, registro.getNombreCliente());
-        ps.setString(4, registro.getCodigo());
+        ps.setString(3, registro.getNombre());
+        ps.setString(4, registro.getApellido());
+        ps.setString(5, registro.getCodigo());
         
         resultado = ps.executeUpdate() == 1;
         ps.close();
@@ -64,10 +66,9 @@ public class RegistroDAO {
     
     try {
         Connection con = Conexion.getConexion();
-        String query="delete from registro_tratamiento where codigo='"+codigo+"'";
+        String query="delete from registro where codigo='"+codigo+"'";
         PreparedStatement ps = con.prepareStatement(query);
-        query="delete from registro where codigo='"+codigo+"'";
-        ps = con.prepareStatement(query);
+        
         resultado = ps.executeUpdate()==1;
         
       ps.close();
@@ -93,7 +94,7 @@ public class RegistroDAO {
       Registro regis;
       
       while (rs.next()) {
-        regis = new Registro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+        regis = new Registro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
         registro.add(regis);
       }
       ps.close();      
@@ -117,7 +118,7 @@ public class RegistroDAO {
       ResultSet rs=ps.executeQuery();
       
       while (rs.next())      
-        pod=new Registro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+        pod=new Registro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
       ps.close();
     }catch (SQLException ex){
       Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);

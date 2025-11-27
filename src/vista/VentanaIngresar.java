@@ -24,7 +24,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txt_fecha = new javax.swing.JTextField();
         txt_hora = new javax.swing.JTextField();
-        txt_nombreCliente = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
         btn_salir = new javax.swing.JButton();
         btn_ingresar = new javax.swing.JButton();
         btn_limpiar = new javax.swing.JButton();
@@ -35,6 +35,8 @@ public class VentanaIngresar extends javax.swing.JFrame {
         chk_hiperqueratosis = new javax.swing.JCheckBox();
         chk_pieAtleta = new javax.swing.JCheckBox();
         chk_diagnostico = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
+        txt_apellido = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,7 +50,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
         jLabel3.setText("Hora (HH:MM)");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Nombre Cliente");
+        jLabel4.setText("Nombre");
 
         txt_fecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +101,9 @@ public class VentanaIngresar extends javax.swing.JFrame {
 
         chk_diagnostico.setText("Diagnostico");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Apellido");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,7 +114,6 @@ public class VentanaIngresar extends javax.swing.JFrame {
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_limpiar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54)
@@ -119,22 +123,25 @@ public class VentanaIngresar extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel5)
                                     .addComponent(jLabel4))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(chk_unaEncarnada)
-                                    .addComponent(txt_nombreCliente)
+                                    .addComponent(txt_nombre)
                                     .addComponent(txt_hora)
                                     .addComponent(txt_fecha)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(chk_callo)
-                                            .addComponent(chk_pieAtleta))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                                            .addComponent(chk_pieAtleta)
+                                            .addComponent(chk_unaEncarnada))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(chk_unaHongo)
                                             .addComponent(chk_hiperqueratosis)
-                                            .addComponent(chk_diagnostico)))))))
+                                            .addComponent(chk_diagnostico)))
+                                    .addComponent(txt_apellido)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jLabel1)))
@@ -144,26 +151,34 @@ public class VentanaIngresar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(16, 16, 16)
-                .addComponent(btn_limpiar)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(chk_unaEncarnada)
-                    .addComponent(chk_unaHongo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(16, 16, 16)
+                        .addComponent(btn_limpiar)
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chk_unaHongo)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(chk_unaEncarnada)
+                                .addComponent(jLabel8)))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chk_callo)
@@ -172,7 +187,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chk_pieAtleta)
                     .addComponent(chk_diagnostico))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -187,19 +202,20 @@ public class VentanaIngresar extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_salirActionPerformed
 
     private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
-        String codigo, fecha, hora, nombreCliente;
+        String codigo, fecha, hora, nombre, apellido;
         
         fecha = txt_fecha.getText();
         hora = txt_hora.getText();
-        nombreCliente = txt_nombreCliente.getText();
+        nombre = txt_nombre.getText();
+        apellido = txt_apellido.getText();
 
-        if (fecha.equals("") || hora.equals("") || nombreCliente.equals("")) {
+        if (fecha.equals("") || hora.equals("") || nombre.equals("") || apellido.equals("")) {
             JOptionPane.showMessageDialog(this, "Debe completar todos los campos.");
             return;
         }
 
         codigo = fecha + "_" + hora;
-        Registro registro = new Registro(codigo, fecha, hora, nombreCliente);
+        Registro registro = new Registro(codigo, fecha, hora, nombre, apellido);
         RegistroDAO regisDAO = new RegistroDAO();
         RegistroTratamientoDAO registroTrataDAO = new RegistroTratamientoDAO();
 
@@ -237,7 +253,8 @@ public class VentanaIngresar extends javax.swing.JFrame {
     private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
     txt_fecha.setText(null);
     txt_hora.setText(null);
-    txt_nombreCliente.setText(null);
+    txt_nombre.setText(null);
+    txt_apellido.setText(null);
     chk_unaEncarnada.setSelected(false);
     chk_unaHongo.setSelected(false);
     chk_callo.setSelected(false);
@@ -266,9 +283,11 @@ public class VentanaIngresar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField txt_apellido;
     private javax.swing.JTextField txt_fecha;
     private javax.swing.JTextField txt_hora;
-    private javax.swing.JTextField txt_nombreCliente;
+    private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }

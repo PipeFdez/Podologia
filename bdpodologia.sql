@@ -31,18 +31,19 @@ CREATE TABLE `registro` (
   `codigo` varchar(30) NOT NULL,
   `fecha` varchar(10) DEFAULT NULL,
   `hora` varchar(5) DEFAULT NULL,
-  `nombreCliente` varchar(100) DEFAULT NULL
+  `nombre` varchar(50) DEFAULT NULL,
+  `apellido` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `registro`
 --
 
-INSERT INTO `registro` (`codigo`, `fecha`, `hora`, `nombreCliente`) VALUES
-('04-01-2025_17:00', '04-01-2025', '17:00', 'Sofia'),
-('09-01-2026_14:00', '09-01-2026', '14:00', 'Max'),
-('27-11-2025_15:00', '27-11-2025', '15:00', 'Felipe'),
-('29-12-2025_16:30', '29-12-2025', '16:30', 'Matias');
+INSERT INTO `registro` (`codigo`, `fecha`, `hora`, `nombre`, `apellido`) VALUES
+('04-01-2025_17:00', '04-01-2025', '17:00', 'Sofia', 'Jorquera'),
+('09-01-2026_14:00', '09-01-2026', '14:00', 'Max', 'Herrera'),
+('27-11-2025_15:00', '27-11-2025', '15:00', 'Felipe', 'Fernandez'),
+('29-12-2025_16:30', '29-12-2025', '16:30', 'Matias', 'Lobos');
 
 -- --------------------------------------------------------
 
