@@ -1,7 +1,9 @@
 package vista;
 
-import controlador.PodologiaDAO;
+import controlador.RegistroDAO;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modelo.RegistroTratamiento;
 
 public class VentanaEstadisticas extends javax.swing.JFrame {
 
@@ -34,7 +36,7 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
             }
         });
 
-        btn_precio.setText("Cantidad de citas con precio mayor a");
+        btn_precio.setText("Tratamiento más solicitado");
         btn_precio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_precioActionPerformed(evt);
@@ -51,7 +53,7 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -60,25 +62,25 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 148, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(btn_cantdadHoras)
-                .addGap(18, 18, 18)
-                .addComponent(btn_precio)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cantdadHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_cantdadHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 85, 85)
+                .addGap(33, 33, 33)
+                .addComponent(btn_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btn_cantdadHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(btn_volver)
                 .addContainerGap())
         );
@@ -91,7 +93,7 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_volverActionPerformed
 
     private void btn_cantdadHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cantdadHorasActionPerformed
-        PodologiaDAO dao = new PodologiaDAO();
+        RegistroDAO dao = new RegistroDAO();
         String fechaInicio = "";
         String fechaFin = "";
         fechaInicio = JOptionPane.showInputDialog("Fecha inicio (DD-MM-AAAA):  ");
@@ -101,12 +103,8 @@ public class VentanaEstadisticas extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cantdadHorasActionPerformed
 
     private void btn_precioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_precioActionPerformed
-        PodologiaDAO dao = new PodologiaDAO();
-        String monto= "";
-        monto = JOptionPane.showInputDialog("Ingrese monto:  ");
-        int montoInt = Integer.parseInt(monto);
-        int cant = dao.cantidadCitasPrecioMayor(montoInt);
-        JOptionPane.showMessageDialog(this, "Cantidad de citas mayor a $" + montoInt + " :  " + cant);
+        RegistroDAO dao = new RegistroDAO();
+        JOptionPane.showMessageDialog(this, "Tratamiento más solicitado \n" + dao.tratamientoMasSolicitado());
     }//GEN-LAST:event_btn_precioActionPerformed
 
 

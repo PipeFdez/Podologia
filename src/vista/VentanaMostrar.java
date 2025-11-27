@@ -1,9 +1,11 @@
 package vista;
-import controlador.PodologiaDAO;
+import controlador.RegistroDAO;
+import controlador.RegistroTratamientoDAO;
+import controlador.TratamientoDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Podologia;
+import modelo.Registro;
 
 public class VentanaMostrar extends javax.swing.JFrame {
     
@@ -12,11 +14,11 @@ public class VentanaMostrar extends javax.swing.JFrame {
     public VentanaMostrar() {
         initComponents();
         
-        modelo.addColumn("Código"); 
+        modelo.addColumn("Codigo");
         modelo.addColumn("Fecha");
         modelo.addColumn("Hora");   
         modelo.addColumn("Cliente");
-        modelo.addColumn("Detalle");
+        modelo.addColumn("Tratamiento");
         modelo.addColumn("Precio");
         
         this.jt_ver.setModel(modelo);
@@ -44,6 +46,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
         txt_buscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btn_estadisticas = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,11 +61,11 @@ public class VentanaMostrar extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Fecha", "Hora", "Cliente", "Detalle", "Precio"
+                "Codigo", "Fecha", "Hora", "Cliente", "Tratamiento", "Precio"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true, true, true, true
@@ -126,37 +129,43 @@ public class VentanaMostrar extends javax.swing.JFrame {
 
         jLabel2.setText("Código");
 
-        btn_estadisticas.setText("Estadisticas");
+        btn_estadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/profit.png"))); // NOI18N
+        btn_estadisticas.setText(" Estadisticas");
         btn_estadisticas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_estadisticasActionPerformed(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("(Solo Fecha, Hora o Cliente)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_buscar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btn_estadisticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_editar, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_eliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_volver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btn_buscar))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btn_editar, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                                .addComponent(btn_estadisticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btn_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                .addComponent(btn_volver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -174,29 +183,25 @@ public class VentanaMostrar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addComponent(btn_volver, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_estadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_estadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_volver, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
-
         DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
         int fila=jt_ver.getSelectedRow();
         
-        String codigo, fecha, hora, nombreCliente, detalleProblema;
-        int precio;
+        String codigo, fecha, hora, nombreCliente;
         
-        if(fila==-1)
+        if(fila == -1)
             JOptionPane.showMessageDialog(this, "Debe seleccionar una cita");
         else
         {
@@ -204,13 +209,11 @@ public class VentanaMostrar extends javax.swing.JFrame {
             fecha = String.valueOf(jt_ver.getValueAt(fila, 1));
             hora = String.valueOf(jt_ver.getValueAt(fila, 2));
             nombreCliente = String.valueOf(jt_ver.getValueAt(fila, 3));
-            detalleProblema = String.valueOf(jt_ver.getValueAt(fila, 4));
-            precio = Integer.parseInt(String.valueOf(jt_ver.getValueAt(fila, 5)));
             
-            Podologia podologia = new Podologia(codigo, fecha, hora, nombreCliente, detalleProblema, precio);
-            PodologiaDAO podDAO = new PodologiaDAO();
+            Registro registro = new Registro(codigo, fecha, hora, nombreCliente);
+            RegistroDAO regisDAO = new RegistroDAO();
             
-            podDAO.modificarHora(podologia);
+            regisDAO.modificarRegistro(registro);
             JOptionPane.showMessageDialog(this, "Cita Modificado");
             
             limpiarTabla();
@@ -229,8 +232,8 @@ public class VentanaMostrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una cita");
         else {
             String codigo = String.valueOf(jt_ver.getValueAt(fila, 0));
-            PodologiaDAO podDAO = new PodologiaDAO();
-            podDAO.eliminarHora(codigo);
+            RegistroDAO registroDAO = new RegistroDAO();
+            registroDAO.eliminarRegistro(codigo);
             
             JOptionPane.showMessageDialog(this, "Cita Eliminada");
             dtm.removeRow(fila);
@@ -239,26 +242,35 @@ public class VentanaMostrar extends javax.swing.JFrame {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         limpiarTabla();
+        int precioTotal = 0;
         
-        PodologiaDAO podDAO = new PodologiaDAO();
-        Podologia a = podDAO.buscarHora(txt_buscar.getText());
+        RegistroDAO resgistroDAO = new RegistroDAO();
+        TratamientoDAO tratamientoDAO = new TratamientoDAO();
+        Registro a = resgistroDAO.buscarRegistro(txt_buscar.getText());
+        RegistroTratamientoDAO registroTrataDAO = new RegistroTratamientoDAO();
         
         if(a==null) {
-            ArrayList <Podologia> registros = podDAO.obtenerTodos();
+            ArrayList <Registro> registros = resgistroDAO.obtenerTodos();
             
             if(registros.size() == 0)
                 JOptionPane.showMessageDialog(this,"No hay citas para mostrar");
             else {
                 DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
+                
                 String [][] datos = new String[registros.size()][6];
+               
                 for (int i = 0; i < registros.size(); i++) {
-                    datos[i][0]=registros.get(i).getCodigo();
-                    datos[i][1]=registros.get(i).getFecha();
-                    datos[i][2]=registros.get(i).getHora();
-                    datos[i][3]=registros.get(i).getNombreCliente();
-                    datos[i][4]=registros.get(i).getDetalleProblema();
-                    datos[i][5]=String.valueOf(registros.get(i).getPrecio());
-
+                    
+                    precioTotal = resgistroDAO.calcularPrecioTotal(registros.get(i).getCodigo());
+                    ArrayList<String> idTratamiento = registroTrataDAO.obtenerTratamientosPorRegistro(registros.get(i).getCodigo());
+                    
+                    datos[i][0] = registros.get(i).getCodigo();
+                    datos[i][1] = registros.get(i).getFecha();
+                    datos[i][2] = registros.get(i).getHora();
+                    datos[i][3] = registros.get(i).getNombreCliente();
+                    datos[i][4] = String.valueOf(idTratamiento);;
+                    datos[i][5] = String.valueOf(precioTotal);
+                    
                     dtm.addRow(datos[i]);
                 }
                 jt_ver.setModel(dtm);
@@ -267,12 +279,15 @@ public class VentanaMostrar extends javax.swing.JFrame {
         else {
             DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
             String [] datos = new String[6];
-            datos[0]=a.getCodigo();
-            datos[1]=a.getFecha();
-            datos[2]=a.getHora();
-            datos[3]=a.getNombreCliente();
-            datos[4]=a.getDetalleProblema();
-            datos[5]=String.valueOf(a.getPrecio());
+            precioTotal = resgistroDAO.calcularPrecioTotal(a.getCodigo());
+            ArrayList<String> idTratamiento = registroTrataDAO.obtenerTratamientosPorRegistro(a.getCodigo());
+            
+            datos[0] = a.getCodigo();
+            datos[1] = a.getFecha();
+            datos[2] = a.getHora();
+            datos[3] = a.getNombreCliente();
+            datos[4] = String.valueOf(idTratamiento);
+            datos[5] = String.valueOf(precioTotal);
             
             dtm.addRow(datos);
             jt_ver.setModel(dtm);    
@@ -300,6 +315,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
     private javax.swing.JButton btn_volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jt_ver;
     private javax.swing.JTextField txt_buscar;

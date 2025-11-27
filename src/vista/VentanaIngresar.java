@@ -1,31 +1,23 @@
 package vista;
 
-import controlador.PodologiaDAO;
+import controlador.RegistroDAO;
+import controlador.RegistroTratamientoDAO;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import modelo.Podologia;
+import modelo.Registro;
 
 public class VentanaIngresar extends javax.swing.JFrame {
-
 
     public VentanaIngresar() {
         initComponents();
         txt_fecha.requestFocus();
     }
     
-    public static boolean IsInteger(String text){
-        int i;
-        try{
-            i = Integer.parseInt(text);
-            return true;
-        } catch (NumberFormatException ex){
-            return false;
-        }
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -35,11 +27,14 @@ public class VentanaIngresar extends javax.swing.JFrame {
         txt_nombreCliente = new javax.swing.JTextField();
         btn_salir = new javax.swing.JButton();
         btn_ingresar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        txt_precio = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txt_detalle = new javax.swing.JTextField();
         btn_limpiar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        chk_unaEncarnada = new javax.swing.JCheckBox();
+        chk_unaHongo = new javax.swing.JCheckBox();
+        chk_callo = new javax.swing.JCheckBox();
+        chk_hiperqueratosis = new javax.swing.JCheckBox();
+        chk_pieAtleta = new javax.swing.JCheckBox();
+        chk_diagnostico = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,18 +76,6 @@ public class VentanaIngresar extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Precio");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Detalle de Consulta");
-
-        txt_detalle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_detalleActionPerformed(evt);
-            }
-        });
-
         btn_limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/erase.png"))); // NOI18N
         btn_limpiar.setBorderPainted(false);
         btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +83,21 @@ public class VentanaIngresar extends javax.swing.JFrame {
                 btn_limpiarActionPerformed(evt);
             }
         });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Tratamiento");
+
+        chk_unaEncarnada.setText("Uña encarnada");
+
+        chk_unaHongo.setText("Uña con hongo");
+
+        chk_callo.setText("Callos");
+
+        chk_hiperqueratosis.setText("Hiperqueratosis");
+
+        chk_pieAtleta.setText("Pie atleta");
+
+        chk_diagnostico.setText("Diagnostico");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,69 +109,74 @@ public class VentanaIngresar extends javax.swing.JFrame {
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_limpiar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)
+                                .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(63, 63, 63)
-                                        .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(chk_unaEncarnada)
+                                    .addComponent(txt_nombreCliente)
+                                    .addComponent(txt_hora)
+                                    .addComponent(txt_fecha)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(32, 32, 32)
+                                            .addComponent(chk_callo)
+                                            .addComponent(chk_pieAtleta))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(12, 12, 12))))
+                                            .addComponent(chk_unaHongo)
+                                            .addComponent(chk_hiperqueratosis)
+                                            .addComponent(chk_diagnostico)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jLabel1)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+                .addGap(16, 16, 16)
+                .addComponent(btn_limpiar)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(btn_limpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txt_detalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(69, 69, 69)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txt_nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(chk_unaEncarnada)
+                    .addComponent(chk_unaHongo))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chk_callo)
+                    .addComponent(chk_hiperqueratosis))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chk_pieAtleta)
+                    .addComponent(chk_diagnostico))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46))
+                .addGap(37, 37, 37))
         );
 
         pack();
@@ -184,70 +187,64 @@ public class VentanaIngresar extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_salirActionPerformed
 
     private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
-        String codigo, fecha, hora, nombreCliente, detalleProblema;
-        int precio;
-        Podologia podologia;
+        String codigo, fecha, hora, nombreCliente;
         
         fecha = txt_fecha.getText();
         hora = txt_hora.getText();
         nombreCliente = txt_nombreCliente.getText();
-        detalleProblema = txt_detalle.getText();
-        
-        if (txt_fecha.getText().equals("") || txt_hora.getText().equals("") || txt_nombreCliente.getText().equals("") ||
-            txt_detalle.getText().equals("") || txt_precio.getText().equals("")) {
-        
+
+        if (fecha.equals("") || hora.equals("") || nombreCliente.equals("")) {
             JOptionPane.showMessageDialog(this, "Debe completar todos los campos.");
             return;
-        
-        } else {
-            
-            if(IsInteger(txt_precio.getText())){
-                precio = Integer.parseInt(txt_precio.getText());
-                codigo = fecha + "_" + hora;
-
-                podologia = new Podologia(codigo, fecha, hora, nombreCliente, detalleProblema, precio);
-                PodologiaDAO podDAO = new PodologiaDAO();
-
-                if(podDAO.buscarHora(codigo)==null) {
-                    podDAO.ingresarHora(podologia);
-                    JOptionPane.showMessageDialog(this, "Hora ingresada");
-                    
-                } else {
-                    JOptionPane.showMessageDialog(this, "Ya existe una cita en ese horario !!!", 
-                                                  "¡¡ Advertencia !!", JOptionPane.WARNING_MESSAGE);
-                    txt_hora.setText(null);
-                    txt_hora.requestFocus();
-                }
-
-            }else{
-                txt_precio.setText(null);
-                JOptionPane.showMessageDialog(this, "El precio debe ser un número");
-                txt_precio.requestFocus();
-            }
         }
+
+        codigo = fecha + "_" + hora;
+        Registro registro = new Registro(codigo, fecha, hora, nombreCliente);
+        RegistroDAO regisDAO = new RegistroDAO();
+        RegistroTratamientoDAO registroTrataDAO = new RegistroTratamientoDAO();
+
+        if (regisDAO.buscarRegistro(codigo) != null) {
+            JOptionPane.showMessageDialog(this, "Ya existe una cita en ese horario");
+            txt_fecha.setText(null);
+            txt_hora.setText(null);
+            txt_fecha.requestFocus();
+            return;
+        }
+        
+        regisDAO.ingresarRegistro(registro);
+        ArrayList<String> tratamientosSeleccionados = new ArrayList<>();
+        
+        if (chk_unaEncarnada.isSelected()) tratamientosSeleccionados.add("Uña encarnada");
+        if (chk_unaHongo.isSelected()) tratamientosSeleccionados.add("Uña con hongo");
+        if (chk_callo.isSelected()) tratamientosSeleccionados.add("Callos");
+        if (chk_hiperqueratosis.isSelected()) tratamientosSeleccionados.add("Hiperqueratos");
+        if (chk_pieAtleta.isSelected()) tratamientosSeleccionados.add("Pie de atleta");
+        if (chk_diagnostico.isSelected()) tratamientosSeleccionados.add("Diagnostico");
+
+        registroTrataDAO.ingresarRegistroTratamiento(codigo, tratamientosSeleccionados);
+        JOptionPane.showMessageDialog(this, "Registro ingresado con " + tratamientosSeleccionados.size() + " tratamientos");
+
     }//GEN-LAST:event_btn_ingresarActionPerformed
 
     private void txt_horaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_horaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_horaActionPerformed
 
-    private void txt_detalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_detalleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_detalleActionPerformed
-
     private void txt_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fechaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_fechaActionPerformed
 
     private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
-        
     txt_fecha.setText(null);
     txt_hora.setText(null);
     txt_nombreCliente.setText(null);
-    txt_detalle.setText(null);
-    txt_precio.setText(null);
+    chk_unaEncarnada.setSelected(false);
+    chk_unaHongo.setSelected(false);
+    chk_callo.setSelected(false);
+    chk_hiperqueratosis.setSelected(false);
+    chk_pieAtleta.setSelected(false);
+    chk_diagnostico.setSelected(false);
     txt_fecha.requestFocus();
-        
     }//GEN-LAST:event_btn_limpiarActionPerformed
 
     /**
@@ -258,16 +255,20 @@ public class VentanaIngresar extends javax.swing.JFrame {
     private javax.swing.JButton btn_ingresar;
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_salir;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox chk_callo;
+    private javax.swing.JCheckBox chk_diagnostico;
+    private javax.swing.JCheckBox chk_hiperqueratosis;
+    private javax.swing.JCheckBox chk_pieAtleta;
+    private javax.swing.JCheckBox chk_unaEncarnada;
+    private javax.swing.JCheckBox chk_unaHongo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txt_detalle;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txt_fecha;
     private javax.swing.JTextField txt_hora;
     private javax.swing.JTextField txt_nombreCliente;
-    private javax.swing.JTextField txt_precio;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,21 +1,19 @@
 package modelo;
 
-public class Podologia {
-
+public class Registro {
     private String codigo;
     private String fecha;
     private String hora;
     private String nombreCliente;
-    private String detalleProblema;
-    private int precio;
 
-    public Podologia(String codigo, String fecha, String hora, String nombreCliente, String detalleProblema, int precio) {
+    public Registro(String codigo, String fecha, String hora, String nombreCliente) {
         this.codigo = codigo;
         this.fecha = fecha;
         this.hora = hora;
         this.nombreCliente = nombreCliente;
-        this.detalleProblema = detalleProblema;
-        this.precio = precio;
+    }
+
+    public Registro() {
     }
 
     public String getCodigo() {
@@ -48,21 +46,5 @@ public class Podologia {
 
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
-    }
-
-    public String getDetalleProblema() {
-        return detalleProblema;
-    }
-
-    public void setDetalleProblema(String problema) {
-        this.detalleProblema = problema;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
     }
 }

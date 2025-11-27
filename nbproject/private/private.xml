@@ -4,7 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Programacion/Java/Ejercicios_Prueba3/Proyecto_Podologia/src/vista/VentanaIngresar.java</file>
+            <file>file:/D:/Programacion/Java/Ejercicios_Prueba3/Proyecto_Podologia/src/controlador/RegistroDAO.java</file>
             <file>file:/D:/Programacion/Java/Ejercicios_Prueba3/Proyecto_Podologia/src/vista/VentanaMostrar.java</file>
+<<<<<<< HEAD
+=======
+            <file>file:/D:/Programacion/Java/Ejercicios_Prueba3/Proyecto_Podologia/src/vista/VentanaPrincipal.java</file>
+            <file>file:/D:/Programacion/Java/Ejercicios_Prueba3/Proyecto_Podologia/src/controlador/Conexion.java</file>
+>>>>>>> nuevaBD
         </group>
     </open-files>
 </project-private>
