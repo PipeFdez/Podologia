@@ -6,13 +6,15 @@ public class Registro {
     private String hora;
     private String nombre;
     private String apellido;
+    private int edad;
 
-    public Registro(String codigo, String fecha, String hora, String nombre, String apellido) {
+    public Registro(String codigo, String fecha, String hora, String nombre, String apellido, int edad) {
         this.codigo = codigo;
         this.fecha = fecha;
         this.hora = hora;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.edad = edad;
     }
 
     public Registro() {
@@ -58,6 +60,15 @@ public class Registro {
         this.apellido = apellido;
     }
 
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    
     
     
 }

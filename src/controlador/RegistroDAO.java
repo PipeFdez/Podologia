@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Registro;
-import modelo.RegistroTratamiento;
 
 public class RegistroDAO {
     
@@ -17,7 +16,7 @@ public class RegistroDAO {
     
         try {
             Connection con = Conexion.getConexion();
-            String query="insert into registro(codigo, fecha, hora, nombre, apellido) values(?,?,?,?,?)";
+            String query="insert into registro(codigo, fecha, hora, nombre, apellido, edad) values(?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setString(1, registro.getCodigo());
@@ -25,6 +24,7 @@ public class RegistroDAO {
             ps.setString(3, registro.getHora());
             ps.setString(4, registro.getNombre());
             ps.setString(5, registro.getApellido());
+            ps.setInt(6, registro.getEdad());
             
             resultado = ps.executeUpdate()==1;
             ps.close();     
@@ -40,14 +40,15 @@ public class RegistroDAO {
 
     try {
         Connection con = Conexion.getConexion();
-        String query="update registro set fecha=?, hora=?, nombre=?, apellido=? where codigo=?";
+        String query="update registro set fecha=?, hora=?, nombre=?, apellido=?, edad=? where codigo=?";
         PreparedStatement ps = con.prepareStatement(query);
       
         ps.setString(1, registro.getFecha());
         ps.setString(2, registro.getHora());
         ps.setString(3, registro.getNombre());
         ps.setString(4, registro.getApellido());
-        ps.setString(5, registro.getCodigo());
+        ps.setInt(5, registro.getEdad());
+        ps.setString(6, registro.getCodigo());
         
         resultado = ps.executeUpdate() == 1;
         ps.close();
@@ -94,7 +95,7 @@ public class RegistroDAO {
       Registro regis;
       
       while (rs.next()) {
-        regis = new Registro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+        regis = new Registro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6));
         registro.add(regis);
       }
       ps.close();      
@@ -118,7 +119,7 @@ public class RegistroDAO {
       ResultSet rs=ps.executeQuery();
       
       while (rs.next())      
-        pod=new Registro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+        pod=new Registro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6));
       ps.close();
     }catch (SQLException ex){
       Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);

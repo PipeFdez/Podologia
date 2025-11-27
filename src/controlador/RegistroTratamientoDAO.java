@@ -77,31 +77,7 @@ public class RegistroTratamientoDAO {
     }
     return regisTratamientoArray;
   }
-  
-  public RegistroTratamiento buscarRegistroTratamiento(String codigo) {
-    RegistroTratamiento registroTrata = null;
 
-    try{
-        Connection con = Conexion.getConexion();
-        String query="Select * from registro_tratamiento where codigo='"+codigo+"'";
-        PreparedStatement ps = con.prepareStatement(query);
-
-        ResultSet rs=ps.executeQuery();
-      
-        while (rs.next())      
-            registroTrata = new RegistroTratamiento(rs.getString(1),rs.getString(2));
-        ps.close();
-      
-    }catch (SQLException ex){
-      Logger.getLogger(RegistroTratamientoDAO.class.getName()).log(Level.SEVERE, null, ex);
-      
-    }catch (ClassNotFoundException ex){
-      Logger.getLogger(RegistroTratamientoDAO.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    return registroTrata;
-  }          
-
-    //Metodos negocio
     public ArrayList<String> obtenerTratamientosPorRegistro(String codigo) {
       ArrayList <String> idTratamiento = new ArrayList<>();
 

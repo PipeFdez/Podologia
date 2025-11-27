@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2025 a las 20:31:29
+-- Tiempo de generación: 27-11-2025 a las 21:01:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,18 +32,19 @@ CREATE TABLE `registro` (
   `fecha` varchar(10) DEFAULT NULL,
   `hora` varchar(5) DEFAULT NULL,
   `nombre` varchar(50) DEFAULT NULL,
-  `apellido` varchar(50) DEFAULT NULL
+  `apellido` varchar(50) DEFAULT NULL,
+  `edad` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `registro`
 --
 
-INSERT INTO `registro` (`codigo`, `fecha`, `hora`, `nombre`, `apellido`) VALUES
-('01-02-2026_10:00', '01-02-2026', '10:00', 'Matias', 'Lobos'),
-('04-01-2025_17:00', '04-01-2025', '17:00', 'Sofia', 'Jorquera'),
-('09-01-2026_14:00', '09-01-2026', '14:00', 'Max', 'Herrera'),
-('27-11-2025_15:00', '27-11-2025', '15:00', 'Felipe', 'Fernandez');
+INSERT INTO `registro` (`codigo`, `fecha`, `hora`, `nombre`, `apellido`, `edad`) VALUES
+('01-02-2026_10:00', '01-02-2026', '10:00', 'Matias', 'Lobos', 28),
+('04-01-2025_17:00', '04-01-2025', '17:00', 'Sofia', 'Jorquera', 34),
+('09-01-2026_14:00', '09-01-2026', '14:00', 'Max', 'Herrera', 45),
+('27-11-2025_15:00', '27-11-2025', '15:00', 'Felipe', 'Fernandez', 27);
 
 -- --------------------------------------------------------
 

@@ -19,6 +19,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
         modelo.addColumn("Hora");   
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
+        modelo.addColumn("Edad");
         modelo.addColumn("Tratamiento");
         modelo.addColumn("Precio");
         
@@ -204,6 +205,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
         int fila=jt_ver.getSelectedRow();
         
         String codigo, fecha, hora, nombre, apellido;
+        int edad;
         
         if(fila == -1)
             JOptionPane.showMessageDialog(this, "Debe seleccionar una cita");
@@ -214,8 +216,9 @@ public class VentanaMostrar extends javax.swing.JFrame {
             hora = String.valueOf(jt_ver.getValueAt(fila, 2));
             nombre = String.valueOf(jt_ver.getValueAt(fila, 3));
             apellido = String.valueOf(jt_ver.getValueAt(fila, 4));
+            edad = Integer.parseInt(String.valueOf(jt_ver.getValueAt(fila, 5))); 
             
-            Registro registro = new Registro(codigo, fecha, hora, nombre, apellido);
+            Registro registro = new Registro(codigo, fecha, hora, nombre, apellido, edad);
             RegistroDAO regisDAO = new RegistroDAO();
             
             regisDAO.modificarRegistro(registro);
@@ -262,7 +265,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
             else {
                 DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
                 
-                String [][] datos = new String[registros.size()][7];
+                String [][] datos = new String[registros.size()][8];
                
                 for (int i = 0; i < registros.size(); i++) {
                     
@@ -274,8 +277,9 @@ public class VentanaMostrar extends javax.swing.JFrame {
                     datos[i][2] = registros.get(i).getHora();
                     datos[i][3] = registros.get(i).getNombre();
                     datos[i][4] = registros.get(i).getApellido();
-                    datos[i][5] = String.valueOf(idTratamiento);;
-                    datos[i][6] = String.valueOf(precioTotal);
+                    datos[i][5] = String.valueOf(registros.get(i).getEdad());
+                    datos[i][6] = String.valueOf(idTratamiento);;
+                    datos[i][7] = String.valueOf(precioTotal);
                     
                     dtm.addRow(datos[i]);
                 }
@@ -284,7 +288,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
         }
         else {
             DefaultTableModel dtm=(DefaultTableModel)jt_ver.getModel();
-            String [] datos = new String[7];
+            String [] datos = new String[8];
             precioTotal = resgistroDAO.calcularPrecioTotal(a.getCodigo());
             ArrayList<String> idTratamiento = registroTrataDAO.obtenerTratamientosPorRegistro(a.getCodigo());
             
@@ -293,8 +297,9 @@ public class VentanaMostrar extends javax.swing.JFrame {
             datos[2] = a.getHora();
             datos[3] = a.getNombre();
             datos[4] = a.getApellido();
-            datos[5] = String.valueOf(idTratamiento);
-            datos[6] = String.valueOf(precioTotal);
+            datos[5] = String.valueOf(a.getEdad());
+            datos[6] = String.valueOf(idTratamiento);
+            datos[7] = String.valueOf(precioTotal);
             
             dtm.addRow(datos);
             jt_ver.setModel(dtm);    
