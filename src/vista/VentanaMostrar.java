@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Registro;
-import modelo.Tratamiento;
 
 public class VentanaMostrar extends javax.swing.JFrame {
     
@@ -201,11 +200,6 @@ public class VentanaMostrar extends javax.swing.JFrame {
             
             Registro registro = new Registro(codigo, fecha, hora, nombreCliente);
             RegistroDAO regisDAO = new RegistroDAO();
-            RegistroTratamientoDAO registroTrataDAO = new RegistroTratamientoDAO();
-            
-            //Tengo que transformar la lista en un arraylist, y luego separar el contendio en cada ""
-            registroTrataDAO.eliminarRegistroTratamiento(codigo);
-            registroTrataDAO.ingresarRegistroTratamiento(codigo, listaID);
             
             regisDAO.modificarRegistro(registro);
             JOptionPane.showMessageDialog(this, "Cita Modificado");

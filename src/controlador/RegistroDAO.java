@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Registro;
+import modelo.RegistroTratamiento;
 
 public class RegistroDAO {
     
@@ -62,11 +63,13 @@ public class RegistroDAO {
     boolean resultado = false;
     
     try {
-      Connection con = Conexion.getConexion();
-      String query="delete from registro where codigo='"+codigo+"'";
-      PreparedStatement ps = con.prepareStatement(query);
-      
-      resultado = ps.executeUpdate()==1;
+        Connection con = Conexion.getConexion();
+        String query="delete from registro_tratamiento where codigo='"+codigo+"'";
+        PreparedStatement ps = con.prepareStatement(query);
+        query="delete from registro where codigo='"+codigo+"'";
+        ps = con.prepareStatement(query);
+        resultado = ps.executeUpdate()==1;
+        
       ps.close();
       
     }catch (SQLException ex){
@@ -155,20 +158,20 @@ public class RegistroDAO {
         return cantidad;
     }
     
-    public int cantidadCitasPrecioMayor(int monto){
-        int cant = 0;
-        
-        String query = "SELECT COUNT(*) FROM `registro` WHERE  precio > ?";
+    public String tratamientoMasSolicitado(){
+        String resultado = "No hay tratamientos";        
+        String query = "SELECT idTratamiento, COUNT(*) FROM registro_tratamiento GROUP BY idTratamiento ORDER BY count(*) DESC LIMIT 1;";
 
         try {
             Connection con = Conexion.getConexion();
             PreparedStatement ps = con.prepareStatement(query);
-
-            ps.setInt(1, monto);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                cant = rs.getInt(1);
+                String idTratamiento = rs.getString(1);
+                String cantidad = rs.getString(2);
+                resultado = "ID: " + idTratamiento + " cantidad: " + cantidad;
+                        
             }
 
             rs.close();
@@ -179,7 +182,7 @@ public class RegistroDAO {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return cant;       
+        return resultado;       
     }
     
     //Fuente https://www.w3schools.com/sql/sql_join.asp
