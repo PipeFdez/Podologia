@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.RegistroTratamiento;
 
 public class RegistroTratamientoDAO {
 
@@ -32,51 +31,6 @@ public class RegistroTratamientoDAO {
           Logger.getLogger(RegistroTratamientoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-  
-  public boolean eliminarRegistroTratamiento(String codigo) {
-    boolean resultado = false;
-    
-    try {
-      Connection con = Conexion.getConexion();
-      String query="delete from registro_tratamiento where codigo='"+codigo+"'";
-      PreparedStatement ps = con.prepareStatement(query);
-      
-      resultado = ps.executeUpdate()==1;
-      ps.close();
-      
-    }catch (SQLException ex){
-      Logger.getLogger(RegistroTratamientoDAO.class.getName()).log(Level.SEVERE, null, ex);
-      
-    }catch (ClassNotFoundException ex){
-      Logger.getLogger(RegistroTratamientoDAO.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    return resultado;
-  }
-  
-  public ArrayList <RegistroTratamiento> obtenerTodos() {
-    ArrayList <RegistroTratamiento> regisTratamientoArray = new ArrayList<>();
-    
-    try{
-        Connection con = Conexion.getConexion();
-        String query="Select * from registro_tratamiento";
-        PreparedStatement ps = con.prepareStatement(query);
-
-        ResultSet rs=ps.executeQuery();
-        RegistroTratamiento registroTrata;
-
-        while (rs.next()) {
-          registroTrata = new RegistroTratamiento(rs.getString(1),rs.getString(2));
-          regisTratamientoArray.add(registroTrata);
-        }
-        ps.close();      
-    }catch (SQLException ex){
-        Logger.getLogger(RegistroTratamientoDAO.class.getName()).log(Level.SEVERE, null, ex);
-
-    }catch (ClassNotFoundException ex){
-        Logger.getLogger(RegistroTratamientoDAO.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    return regisTratamientoArray;
-  }
 
     public ArrayList<String> obtenerTratamientosPorRegistro(String codigo) {
       ArrayList <String> idTratamiento = new ArrayList<>();
