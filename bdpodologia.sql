@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2025 a las 20:40:17
+-- Tiempo de generación: 27-11-2025 a las 19:06:57
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -34,6 +34,16 @@ CREATE TABLE `registro` (
   `nombreCliente` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `registro`
+--
+
+INSERT INTO `registro` (`codigo`, `fecha`, `hora`, `nombreCliente`) VALUES
+('04-01-2025_17:00', '04-01-2025', '17:00', 'Sofia'),
+('09-01-2026_14:00', '09-01-2026', '14:00', 'Max'),
+('27-11-2025_15:00', '27-11-2025', '15:00', 'Felipe'),
+('29-12-2025_16:30', '29-12-2025', '16:30', 'Matias');
+
 -- --------------------------------------------------------
 
 --
@@ -42,8 +52,20 @@ CREATE TABLE `registro` (
 
 CREATE TABLE `registro_tratamiento` (
   `codigo` varchar(30) NOT NULL,
-  `idTratamiento` varchar(5) NOT NULL
+  `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `registro_tratamiento`
+--
+
+INSERT INTO `registro_tratamiento` (`codigo`, `nombre`) VALUES
+('04-01-2025_17:00', 'Callos'),
+('04-01-2025_17:00', 'Uña encarnada'),
+('09-01-2026_14:00', 'Diagnostico'),
+('27-11-2025_15:00', 'Diagnostico'),
+('29-12-2025_16:30', 'Hiperqueratosis'),
+('29-12-2025_16:30', 'Pie de atleta');
 
 -- --------------------------------------------------------
 
@@ -52,10 +74,21 @@ CREATE TABLE `registro_tratamiento` (
 --
 
 CREATE TABLE `tratamiento` (
-  `idTratamiento` varchar(5) NOT NULL,
-  `nombre` varchar(50) DEFAULT NULL,
+  `nombre` varchar(50) NOT NULL,
   `precio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tratamiento`
+--
+
+INSERT INTO `tratamiento` (`nombre`, `precio`) VALUES
+('Callos', 25000),
+('Diagnostico', 10000),
+('Hiperqueratosis', 30000),
+('Pie de atleta', 35000),
+('Uña con hongo', 20000),
+('Uña encarnada', 15000);
 
 --
 -- Índices para tablas volcadas
@@ -71,14 +104,14 @@ ALTER TABLE `registro`
 -- Indices de la tabla `registro_tratamiento`
 --
 ALTER TABLE `registro_tratamiento`
-  ADD PRIMARY KEY (`codigo`,`idTratamiento`),
-  ADD KEY `idTratamiento` (`idTratamiento`);
+  ADD PRIMARY KEY (`codigo`,`nombre`),
+  ADD KEY `nombre` (`nombre`);
 
 --
 -- Indices de la tabla `tratamiento`
 --
 ALTER TABLE `tratamiento`
-  ADD PRIMARY KEY (`idTratamiento`);
+  ADD PRIMARY KEY (`nombre`);
 
 --
 -- Restricciones para tablas volcadas
@@ -88,8 +121,9 @@ ALTER TABLE `tratamiento`
 -- Filtros para la tabla `registro_tratamiento`
 --
 ALTER TABLE `registro_tratamiento`
+  ADD CONSTRAINT `fk_pe_del` FOREIGN KEY (`codigo`) REFERENCES `registro` (`codigo`) ON DELETE CASCADE,
   ADD CONSTRAINT `registro_tratamiento_ibfk_1` FOREIGN KEY (`codigo`) REFERENCES `registro` (`codigo`),
-  ADD CONSTRAINT `registro_tratamiento_ibfk_2` FOREIGN KEY (`idTratamiento`) REFERENCES `tratamiento` (`idTratamiento`);
+  ADD CONSTRAINT `registro_tratamiento_ibfk_2` FOREIGN KEY (`nombre`) REFERENCES `tratamiento` (`nombre`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

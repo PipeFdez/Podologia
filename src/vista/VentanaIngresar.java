@@ -217,7 +217,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
         if (chk_unaEncarnada.isSelected()) tratamientosSeleccionados.add("Uña encarnada");
         if (chk_unaHongo.isSelected()) tratamientosSeleccionados.add("Uña con hongo");
         if (chk_callo.isSelected()) tratamientosSeleccionados.add("Callos");
-        if (chk_hiperqueratosis.isSelected()) tratamientosSeleccionados.add("Hiperqueratos");
+        if (chk_hiperqueratosis.isSelected()) tratamientosSeleccionados.add("Hiperqueratosis");
         if (chk_pieAtleta.isSelected()) tratamientosSeleccionados.add("Pie de atleta");
         if (chk_diagnostico.isSelected()) tratamientosSeleccionados.add("Diagnostico");
 
