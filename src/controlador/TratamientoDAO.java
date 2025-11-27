@@ -23,7 +23,7 @@ public class TratamientoDAO {
           Tratamiento tra;
 
           while (rs.next()) {
-            tra=new Tratamiento(rs.getString(1),rs.getString(2),rs.getInt(3));
+            tra=new Tratamiento(rs.getString(1),rs.getInt(2));
             tratramiento.add(tra);
           }
           ps.close();      
@@ -41,12 +41,11 @@ public class TratamientoDAO {
     
         try {
             Connection con = Conexion.getConexion();
-            String query="insert into tratamiento(idTratamiento, nombre, precio) values(?,?,?)";
+            String query="insert into tratamiento(nombre, precio) values(?,?,?)";
             PreparedStatement ps = con.prepareStatement(query);
 
-            ps.setString(1, tratamiento.getIdTratamiento());
-            ps.setString(2, tratamiento.getNombreTratamiento());
-            ps.setInt(3, tratamiento.getPrecio());
+            ps.setString(1, tratamiento.getNombreTratamiento());
+            ps.setInt(2, tratamiento.getPrecio());
             
             resultado = ps.executeUpdate()==1;
             ps.close();     
@@ -62,12 +61,11 @@ public class TratamientoDAO {
 
     try {
         Connection con = Conexion.getConexion();
-        String query="update tratamiento set precio=?, nombre=? where idTratamiento=?";
+        String query="update tratamiento set precio=? whew nombre=?";
         PreparedStatement ps = con.prepareStatement(query);
       
         ps.setInt(1, tratamiento.getPrecio());
         ps.setString(2, tratamiento.getNombreTratamiento());
-        ps.setString(3, tratamiento.getIdTratamiento());
         
         resultado = ps.executeUpdate() == 1;
         ps.close();
@@ -86,7 +84,7 @@ public class TratamientoDAO {
     
     try {
         Connection con = Conexion.getConexion();
-        String query="delete from tratamiento where idTratamiento='"+codigo+"'";
+        String query="delete from tratamiento where nombre='"+codigo+"'";
         PreparedStatement ps = con.prepareStatement(query);
 
         resultado = ps.executeUpdate()==1;
@@ -106,13 +104,13 @@ public class TratamientoDAO {
     
     try{
         Connection con = Conexion.getConexion();
-        String query="Select * from tratamiento where idTratamiento='"+codigo+"'";
+        String query="Select * from tratamiento where nombre='"+codigo+"'";
         PreparedStatement ps = con.prepareStatement(query);
 
         ResultSet rs=ps.executeQuery();
       
         while (rs.next())      
-            tratamiento=new Tratamiento(rs.getString(1),rs.getString(2),rs.getInt(3));
+            tratamiento=new Tratamiento(rs.getString(1),rs.getInt(2));
           ps.close();
 
     }catch (SQLException ex){

@@ -2,24 +2,14 @@ package modelo;
 
 public class Tratamiento {
 
-    private String idTratamiento;
     private String nombreTratamiento;
     private int precio;
 
-    public Tratamiento(String idTratamiento, String nombreTratamiento, int precio) {
-        this.idTratamiento = idTratamiento;
+    public Tratamiento(String nombreTratamiento, int precio) {
         this.nombreTratamiento = nombreTratamiento;
         this.precio = precio;
     }
-
-    public String getIdTratamiento() {
-        return idTratamiento;
-    }
-
-    public void setIdTratamiento(String idTratamiento) {
-        this.idTratamiento = idTratamiento;
-    }
-
+    
     public String getNombreTratamiento() {
         return nombreTratamiento;
     }

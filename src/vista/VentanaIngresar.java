@@ -216,12 +216,12 @@ public class VentanaIngresar extends javax.swing.JFrame {
         regisDAO.ingresarRegistro(registro);
         ArrayList<String> tratamientosSeleccionados = new ArrayList<>();
         
-        if (chk_unaEncarnada.isSelected()) tratamientosSeleccionados.add("01");
-        if (chk_unaHongo.isSelected()) tratamientosSeleccionados.add("02");
-        if (chk_callo.isSelected()) tratamientosSeleccionados.add("03");
-        if (chk_hiperqueratosis.isSelected()) tratamientosSeleccionados.add("04");
-        if (chk_pieAtleta.isSelected()) tratamientosSeleccionados.add("05");
-        if (chk_diagnostico.isSelected()) tratamientosSeleccionados.add("06");
+        if (chk_unaEncarnada.isSelected()) tratamientosSeleccionados.add("Uña encarnada");
+        if (chk_unaHongo.isSelected()) tratamientosSeleccionados.add("Uña con hongo");
+        if (chk_callo.isSelected()) tratamientosSeleccionados.add("Callos");
+        if (chk_hiperqueratosis.isSelected()) tratamientosSeleccionados.add("Hiperqueratos");
+        if (chk_pieAtleta.isSelected()) tratamientosSeleccionados.add("Pie de atleta");
+        if (chk_diagnostico.isSelected()) tratamientosSeleccionados.add("Diagnostico");
 
         registroTrataDAO.ingresarRegistroTratamiento(codigo, tratamientosSeleccionados);
         JOptionPane.showMessageDialog(this, "Registro ingresado con " + tratamientosSeleccionados.size() + " tratamientos");

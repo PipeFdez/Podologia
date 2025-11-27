@@ -160,7 +160,7 @@ public class RegistroDAO {
     
     public String tratamientoMasSolicitado(){
         String resultado = "No hay tratamientos";        
-        String query = "SELECT idTratamiento, COUNT(*) FROM registro_tratamiento GROUP BY idTratamiento ORDER BY count(*) DESC LIMIT 1;";
+        String query = "SELECT nombre, COUNT(*) FROM registro_tratamiento GROUP BY nombre ORDER BY count(*) DESC LIMIT 1;";
 
         try {
             Connection con = Conexion.getConexion();
@@ -170,7 +170,7 @@ public class RegistroDAO {
             if (rs.next()) {
                 String idTratamiento = rs.getString(1);
                 String cantidad = rs.getString(2);
-                resultado = "ID: " + idTratamiento + " cantidad: " + cantidad;
+                resultado = idTratamiento + "\ncantidad: " + cantidad;
                         
             }
 
@@ -185,13 +185,12 @@ public class RegistroDAO {
         return resultado;       
     }
     
-    //Fuente https://www.w3schools.com/sql/sql_join.asp
     public int calcularPrecioTotal(String codigo) {
         int precioTotal = 0;
 
         String query = "SELECT SUM(tratamiento.precio) " + 
                  "FROM registro_tratamiento " +
-                 "INNER JOIN tratamiento ON registro_tratamiento.idTratamiento = tratamiento.idTratamiento " +
+                 "INNER JOIN tratamiento ON registro_tratamiento.nombre = tratamiento.nombre " +
                  "WHERE registro_tratamiento.codigo='"+codigo+"'";
         try {
                 Connection con = Conexion.getConexion();

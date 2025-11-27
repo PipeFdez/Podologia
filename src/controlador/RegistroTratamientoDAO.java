@@ -14,7 +14,7 @@ public class RegistroTratamientoDAO {
     public void ingresarRegistroTratamiento(String codigo, ArrayList<String> tratamientos) {    
         try {
             Connection con = Conexion.getConexion();
-            String query = "insert into registro_tratamiento (codigo, idTratamiento) values(?, ?)";
+            String query = "insert into registro_tratamiento (codigo, nombre) values(?, ?)";
             PreparedStatement ps = con.prepareStatement(query);
 
             for (int i = 0; i < tratamientos.size(); i++) {
@@ -105,7 +105,7 @@ public class RegistroTratamientoDAO {
     public ArrayList<String> obtenerTratamientosPorRegistro(String codigo) {
       ArrayList <String> idTratamiento = new ArrayList<>();
 
-      String query = "SELECT idTratamiento FROM registro_tratamiento WHERE codigo='"+codigo+"'";
+      String query = "SELECT nombre FROM registro_tratamiento WHERE codigo='"+codigo+"'";
       try {
           Connection con = Conexion.getConexion();
           PreparedStatement ps = con.prepareStatement(query);
