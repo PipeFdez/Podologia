@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2025 a las 19:06:57
+-- Tiempo de generación: 27-11-2025 a las 20:31:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -40,10 +40,10 @@ CREATE TABLE `registro` (
 --
 
 INSERT INTO `registro` (`codigo`, `fecha`, `hora`, `nombre`, `apellido`) VALUES
+('01-02-2026_10:00', '01-02-2026', '10:00', 'Matias', 'Lobos'),
 ('04-01-2025_17:00', '04-01-2025', '17:00', 'Sofia', 'Jorquera'),
 ('09-01-2026_14:00', '09-01-2026', '14:00', 'Max', 'Herrera'),
-('27-11-2025_15:00', '27-11-2025', '15:00', 'Felipe', 'Fernandez'),
-('29-12-2025_16:30', '29-12-2025', '16:30', 'Matias', 'Lobos');
+('27-11-2025_15:00', '27-11-2025', '15:00', 'Felipe', 'Fernandez');
 
 -- --------------------------------------------------------
 
@@ -61,12 +61,13 @@ CREATE TABLE `registro_tratamiento` (
 --
 
 INSERT INTO `registro_tratamiento` (`codigo`, `nombre`) VALUES
+('01-02-2026_10:00', 'Hiperqueratosis'),
+('01-02-2026_10:00', 'Pie de atleta'),
+('01-02-2026_10:00', 'Uña con hongo'),
 ('04-01-2025_17:00', 'Callos'),
 ('04-01-2025_17:00', 'Uña encarnada'),
 ('09-01-2026_14:00', 'Diagnostico'),
-('27-11-2025_15:00', 'Diagnostico'),
-('29-12-2025_16:30', 'Hiperqueratosis'),
-('29-12-2025_16:30', 'Pie de atleta');
+('27-11-2025_15:00', 'Diagnostico');
 
 -- --------------------------------------------------------
 
