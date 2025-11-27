@@ -10,6 +10,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
 
     public VentanaIngresar() {
         initComponents();
+        txt_fecha.requestFocus();
     }
     
     @SuppressWarnings("unchecked")
@@ -120,23 +121,20 @@ public class VentanaIngresar extends javax.swing.JFrame {
                                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(jLabel4))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(chk_unaEncarnada)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(chk_unaHongo))
-                                        .addComponent(txt_nombreCliente)
-                                        .addComponent(txt_hora)
-                                        .addComponent(txt_fecha))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(chk_unaEncarnada)
+                                    .addComponent(txt_nombreCliente)
+                                    .addComponent(txt_hora)
+                                    .addComponent(txt_fecha)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(chk_callo)
                                             .addComponent(chk_pieAtleta))
-                                        .addGap(46, 46, 46)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(chk_diagnostico)
-                                            .addComponent(chk_hiperqueratosis)))))))
+                                            .addComponent(chk_unaHongo)
+                                            .addComponent(chk_hiperqueratosis)
+                                            .addComponent(chk_diagnostico)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jLabel1)))
@@ -240,6 +238,12 @@ public class VentanaIngresar extends javax.swing.JFrame {
     txt_fecha.setText(null);
     txt_hora.setText(null);
     txt_nombreCliente.setText(null);
+    chk_unaEncarnada.setSelected(false);
+    chk_unaHongo.setSelected(false);
+    chk_callo.setSelected(false);
+    chk_hiperqueratosis.setSelected(false);
+    chk_pieAtleta.setSelected(false);
+    chk_diagnostico.setSelected(false);
     txt_fecha.requestFocus();
     }//GEN-LAST:event_btn_limpiarActionPerformed
 
